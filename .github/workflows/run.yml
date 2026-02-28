@@ -59,6 +59,16 @@ jobs:
         echo "crawl_date=$today" >> $GITHUB_OUTPUT
         echo "爬取完成 / Crawling completed"
         
+    # 从 data 分支拉取历史日期的 jsonl，供去重脚本使用（main 工作区默认没有历史数据，导致去重从未生效）
+    - name: Fetch history data for deduplication
+      run: |
+        git fetch origin data:refs/remotes/origin/data 2>/dev/null || true
+        for i in 1 2 3 4 5 6 7; do
+          past=$(date -u -d "-$i days" "+%Y-%m-%d")
+          git show origin/data:data/${past}.jsonl > data/${past}.jsonl 2>/dev/null || true
+        done
+        echo "历史数据拉取完成（用于去重）/ History data fetched for dedup"
+        
     - name: Check for duplicates
       id: dedup_check
       run: |
