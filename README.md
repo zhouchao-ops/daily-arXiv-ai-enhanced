@@ -53,6 +53,7 @@ Otherwise, you can directly use this repo in https://dw-dengwei.github.io/daily-
    3. `MODEL_NAME`: such as "deepseek-chat"
    4. `EMAIL`: your email for push to GitHub
    5. `NAME`: your name for push to GitHub
+   6. **[Optional] `NEGATIVE_KEYWORDS`**: Keywords to exclude. If a paper's **title or abstract** contains any of these (case-insensitive), it will be filtered out and not appear in the daily list. Use comma to separate multiple keywords, e.g. `"survey, review, tutorial"`. Leave empty or unset to disable filtering.
 8. Go to your-own-repo -> Actions -> arXiv-daily-ai-enhanced
 9. You can manually click **Run workflow** to test if it works well (it may take about one hour). By default, this action will automatically run every day. You can modify it in `.github/workflows/run.yml`
 10. Set up GitHub pages: Go to your own repo -> Settings -> Pages. In `Build and deployment`, set `Source="Deploy from a branch"`, `Branch="main", "/(root)"`. Wait for a few minutes, go to https://\<username\>.github.io/daily-arXiv-ai-enhanced/. Please see this [issue](https://github.com/dw-dengwei/daily-arXiv-ai-enhanced/issues/14) for more precise instructions.
